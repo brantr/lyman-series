@@ -15,6 +15,7 @@ double *E_lyman; //energies of lyman series transitions in cm^-1
 double gi_lyman;  //statistical weight i
 double *gk_lyman;  //statistical weight k
 double *Aki_lyman; //Emission coefficient k->i in 1/second
+double *Bik_lyman; //Absorption coefficient i->k in cgs
 double *fik_lyman; //oscillator strength i->k
 
 
@@ -40,6 +41,7 @@ void InitializeLymanSeries(void)
     gi_lyman = 2.0;
     gk_lyman = AllocateLymanMemory(n_lyman);
     Aki_lyman = AllocateLymanMemory(n_lyman);
+    Bik_lyman = AllocateLymanMemory(n_lyman);
     fik_lyman = AllocateLymanMemory(n_lyman);
 
     //set the data
@@ -50,6 +52,8 @@ void InitializeLymanSeries(void)
       E_lyman[i] = E_lyman_in[i];
       gk_lyman[i] = gk_lyman_in[i];
       Aki_lyman[i] = Aki_lyman_in[i];
+      //eqn 6 of wiese et al 1966
+      Bik_lyman[i] = 6.01*pow(l_lyman[i],3.)*(gk_lyman[i]/gi_lyman)*Aki_lyman[i];
       fik_lyman[i] = fik_lyman_in[i];
     }
 
@@ -64,6 +68,7 @@ void FreeLymanSeries(void)
     free(E_lyman);
     free(gk_lyman);
     free(Aki_lyman);
+    free(Bik_lyman);
     free(fik_lyman);
     flag_lyman = 0;
   }

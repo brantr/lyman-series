@@ -14,6 +14,7 @@ extern double *E_lyman; //energies of lyman series transitions in cm^-1
 extern double gi_lyman;  //statistical weight i
 extern double *gk_lyman;  //statistical weight k
 extern double *Aki_lyman; //Emission coefficient k->i in 1/second
+extern double *Bik_lyman; //Absorption coefficient i->k in cgs
 extern double *fik_lyman; //oscillator strength i->k
 
 void InitializeLymanSeries(void);
