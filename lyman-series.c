@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <math.h>
 #include "lyman-series.h"
 
 /* All data taken from Wiese et al. 1966
